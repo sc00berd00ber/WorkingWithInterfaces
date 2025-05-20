@@ -1,25 +1,30 @@
+
 import java.util.ArrayList;
 
-class Person implements Comparable{
+class Person implements Comparable {
     String first;
     String last;
-    Person(String first, String last){
+    int age;
+
+    Person(String first, String last, int age) {
         this.first = first;
         this.last = last;
+        this.age = age;
     }
-    String getFullName(){
-        return String.format("%s,%s", last, first);
+    public Integer getAge(){
+        return this.age;
+    }
+    String getFullName() {
+        return String.format("%s, %s", last, first);
     }
 
-    @Override
     public int compareTo(Object o) {
-        Person p = (Person) o;
-        return getFullName().compareTo(p.getFullName());
+        Person other = (Person) o;
+        return this.getAge().compareTo(other.getAge());
     }
 
-    @Override
     public String toString() {
-        return this.last + ", " + this.first;
+        return String.format("%s, %s (%d)", last, first, age);
     }
 }
 
@@ -27,16 +32,15 @@ public class WorkingWithInterfaces {
     public static void main(String[] args) {
         ArrayList<Person> list = new ArrayList<>();
 
-        list.add(new Person("Nat", "Tessema"));
-        list.add(new Person("Gwen", "Stacie"));
-        list.add(new Person("Mary", "Jane"));
-        list.add(new Person("Parker", "Peter"));
-        list.add(new Person("Mary", "Johnson"));
-
+        list.add(new Person("Peter", "Parker", 22));
+        list.add(new Person("Gwen", "Stacie", 23));
+        list.add(new Person("Mary", "Jane",24));
+        list.add(new Person("Amy", "Adams",11));
+        list.add(new Person("Sam", "Adams",22));
+        list.add(new Person("Carey", "Adams",99));
 
         list.sort(null);
-
-        for (Person p : list){
+        for (Person p : list) {
             System.out.println(p);
         }
     }
